@@ -12,9 +12,21 @@ public class Glider : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+
+   {
+    gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+    // Example using tags
+    if (gameObject.tag == "Enemy1")
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        speed = Random.Range(3f, 5f); // normal speed
     }
+    else if (gameObject.tag == "Enemy2")
+    {
+        speed = Random.Range(1f, 2f); // slower speed
+    }
+}
+
 
     // Update is called once per frame
     void Update()

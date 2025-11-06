@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         lives = 3;
-        speed = 5.0f;
+        speed = 4.0f;
         gameManager.ChangeLivesText(lives);
     }
 
@@ -55,22 +55,42 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime * speed);
+    horizontalInput = Input.GetAxis("Horizontal");
+    verticalInput = Input.GetAxis("Vertical");
+    transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime * speed);
 
-        float horizontalScreenSize = gameManager.horizontalScreenSize;
-        float verticalScreenSize = gameManager.verticalScreenSize;
+    float horizontalScreenSize = gameManager.horizontalScreenSize;
+    float verticalScreenSize = gameManager.verticalScreenSize;
 
-        if (transform.position.x <= -horizontalScreenSize || transform.position.x > horizontalScreenSize)
-        {
-            transform.position = new Vector3(transform.position.x * -1, transform.position.y, 0);
-        }
+    // --- Horizontal wrap-around ---
+    if (transform.position.x < -horizontalScreenSize)
+    {
+        transform.position = new Vector3(horizontalScreenSize, transform.position.y, 0);
+    }
+    else if (transform.position.x > horizontalScreenSize)
+    {
+        transform.position = new Vector3(-horizontalScreenSize, transform.position.y, 0);
+    }
 
-        if (transform.position.y <= -verticalScreenSize || transform.position.y > verticalScreenSize)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
-        }
+    // --- Vertical movement limits (bottom half only) ---
+    float minY = -verticalScreenSize; // bottom of screen
+    float maxY = 1;                   // middle of screen
+    float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
+
+    transform.position = new Vector3(transform.position.x, clampedY, 0);
+
+    float newX = transform.position.x;
+    float halfWidth = GetComponent<SpriteRenderer>().bounds.size.x / 2; // account for sprite size
+
+    if (transform.position.x + halfWidth < -gameManager.horizontalScreenSize)
+   {
+    newX = gameManager.horizontalScreenSize + halfWidth;
+   }
+   else if (transform.position.x - halfWidth > gameManager.horizontalScreenSize)
+  {
+    newX = -gameManager.horizontalScreenSize - halfWidth;
+   }
+   
 
     }
 }

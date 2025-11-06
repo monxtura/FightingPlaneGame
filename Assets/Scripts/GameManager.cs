@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        horizontalScreenSize = 10f;
-        verticalScreenSize = 6.5f;
+        horizontalScreenSize = 7f;
+        verticalScreenSize = 5f;
         score = 0;
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         CreateSky();
-        InvokeRepeating("CreateEnemy", 1, 3);
+        InvokeRepeating("CreateEnemy", 1, 2);
     }
 
     // Update is called once per frame
