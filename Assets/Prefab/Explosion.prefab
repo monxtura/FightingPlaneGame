@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1039479969715957868}
   - component: {fileID: 8467618697582772559}
   - component: {fileID: 5489046097513045939}
+  - component: {fileID: -5297457286724932898}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -126,3 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df453bed836fdd24fa5203ac0bcec333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5297457286724932898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886710396827344234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c62e570adb881747a76bf6fa1bf992f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfDestroyer
+  destructionTime: 2.5

@@ -105,9 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cd60caef9c0cb4eac00f38203cd42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 2
+  lives: 3
   bulletPrefab: {fileID: 8568965665149658710, guid: b1eed6253aa069845b0edf3f90db799d, type: 3}
   explosionPrefab: {fileID: 1886710396827344234, guid: e8e63456aa1d9d240ab38a0453e59388, type: 3}
+  thrusterPrefab: {fileID: 0}
+  shieldPrefab: {fileID: 0}
 --- !u!58 &9014237873057940210
 CircleCollider2D:
   m_ObjectHideFlags: 0
