@@ -6,9 +6,17 @@ MonoImporter:
   defaultReferences:
   - playerPrefab: {fileID: 6465214131589529892, guid: 2946f3eb6029d8a40b20e03adb96e4fa, type: 3}
   - enemyOnePrefab: {fileID: 8729755512266785908, guid: 57d7aa5182902e24cb707961f14f52d5, type: 3}
-  - enemyTwoPrefab: {instanceID: 0}
+  - enemyTwoPrefab: {fileID: 1988985957987021690, guid: 7d666e36ed0fb444ca31b88c0f12cbae, type: 3}
   - cloudPrefab: {fileID: 8901978872678414076, guid: 14dd4fa52784c904e83c0650f3eea560, type: 3}
+  - gameOverText: {instanceID: 0}
+  - restartText: {instanceID: 0}
+  - powerupPrefab: {fileID: 5549020555463398921, guid: 55a194112debe2b4b861c7f9dbd1c137, type: 3}
+  - audioPlayer: {instanceID: 0}
+  - powerupSound: {instanceID: 0}
+  - powerdownSound: {instanceID: 0}
   - livesText: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - powerupText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
