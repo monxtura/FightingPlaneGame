@@ -5,28 +5,28 @@ using System.Collections;
 public class PlayerShield : MonoBehaviour
 {
     [Header("Shield Settings")]
-    public float shieldDuration = 5f;          // How long the shield lasts
-    public GameObject shieldVisual;            // Optional shield visual (sprite or particle)
-    public AudioClip shieldOnSound;            // Sound when shield activates
-    public AudioClip shieldOffSound;           // Sound when shield ends
+    public float shieldDuration = 5f;
+    public GameObject shieldVisual;
+    public AudioClip shieldOnSound;
+    public AudioClip shieldOffSound;
 
     private AudioSource audioSource;
     private bool isShieldActive = false;
+    private Coroutine shieldCoroutine;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         if (shieldVisual != null)
-            shieldVisual.SetActive(false); // Hide shield at start
+            shieldVisual.SetActive(false);
     }
 
-    // Call this to activate the shield
     public void ActivateShield()
     {
-        if (isShieldActive)
-            StopAllCoroutines(); // Reset timer if shield already active
+        if (shieldCoroutine != null)
+            StopCoroutine(shieldCoroutine);
 
-        StartCoroutine(ShieldRoutine());
+        shieldCoroutine = StartCoroutine(ShieldRoutine());
     }
 
     IEnumerator ShieldRoutine()
@@ -43,4 +43,13 @@ public class PlayerShield : MonoBehaviour
 
         isShieldActive = false;
 
-        if (shieldVisual != n
+        if (shieldVisual != null)
+            shieldVisual.SetActive(false);
+
+        if (shieldOffSound != null)
+            audioSource.PlayOneShot(shieldOffSound);
+
+        shieldCoroutine = null;
+    }
+}
+
