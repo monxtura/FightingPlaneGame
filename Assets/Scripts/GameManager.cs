@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject restartText;
     public GameObject powerupPrefab;
     public GameObject audioPlayer;
+    public GameObject shieldPrefab;
 
     public AudioClip powerupSound;
     public AudioClip powerdownSound;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
 
     void CreatePowerup()
     {
+
+
         Instantiate(powerupPrefab, new Vector3(Random.Range(-horizontalScreenSize * 0.8f, horizontalScreenSize * 0.8f), Random.Range(-verticalScreenSize * 0.8f, verticalScreenSize * 0.8f), 0), Quaternion.identity);
     }
 
@@ -181,7 +184,6 @@ public class GameManager : MonoBehaviour
         CancelInvoke();
         cloudMove = 0;
     }
-
 
 
 

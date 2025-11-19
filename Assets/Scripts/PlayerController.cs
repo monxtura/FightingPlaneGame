@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+    
 
     public GameObject bulletPrefab;
     public GameObject explosionPrefab;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void LoseALife()
     {
+
         //Do I have a shield? If yes: do not lose a life, but instead deactivate the shield's visibility
         //If not: lose a life
         //lives = lives - 1;
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
   IEnumerator SpeedPowerDown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         speed = 5f;
         thrusterPrefab.SetActive(false);
         gameManager.ManagePowerupText(0);
@@ -82,10 +84,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D whatDidIHit)
     {
+
         if(whatDidIHit.tag == "Powerup")
         {
             Destroy(whatDidIHit.gameObject);
-            int whichPowerup = Random.Range(1, 4);
+            int whichPowerup = Random.Range(1, 5);
             gameManager.PlaySound(1);
               switch (whichPowerup)
             {
@@ -102,13 +105,16 @@ public class PlayerController : MonoBehaviour
                     gameManager.ManagePowerupText(2);
                     break;
                 case 3:
+                    //Picked up shield
+                    //Do I already have a shield?
+                    //If yes: do nothing
+                    //If not: activate the shield's visibility
+                    gameManager.ManagePowerupText(4);
+                    break;
+                case 4:
                     weaponType = 3;
                     StartCoroutine(WeaponPowerDown());
                     gameManager.ManagePowerupText(3);
-                    break;
-                case 4:
-                    // shield powerup do you have shield if yes do nothing if not activate it 
-                    gameManager.ManagePowerupText(4);
                     break;
             }
         }
